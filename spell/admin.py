@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Spell_school
+from .models import Spell_school, Spell
 
 # Register your models here.
 class Spell_schoolAdmin(admin.ModelAdmin):
@@ -14,4 +14,8 @@ class Spell_schoolAdmin(admin.ModelAdmin):
     image_preview.short_description = 'Logo obraz'
     image_preview.allow_tags = True
 
+class SpellAdmin(admin.ModelAdmin):
+    list_display = ('title', 'spell_level',)
+
 admin.site.register(Spell_school, Spell_schoolAdmin)
+admin.site.register(Spell, SpellAdmin)
