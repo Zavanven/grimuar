@@ -21,7 +21,7 @@ from user import views as user_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
-    path('', spell_views.show_all_spells, name="show_all_spells"),
+    path('', user_views.home, name="home"),
 
     # Auth
     path('signup/', user_views.signup_user, name="signup_user"),
