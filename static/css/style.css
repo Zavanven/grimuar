@@ -2,3 +2,18 @@
     width: 40px;
     height: auto;
 }
+
+/* Create spell */
+
+form .form-floating,
+form .row {
+    margin-bottom: 10px;
+}
+
+#id_description {
+	height: 200px;
+}
+
+#id_higher_level {
+    height: 100px;
+}
