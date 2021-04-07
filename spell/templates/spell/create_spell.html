@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 text-center">
+        <h2>Dodaj zaklęcie</h2>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        {% if alert %}
+        <div class="alert alert-success" role="alert">
+            {{ alert }}
+        </div>
+        {% endif %}
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-floating">
+                <input type="text" name="title" class="form-control" id="id_title" placeholder="Nazwa zaklęcia">
+                <label for="id_title">Nazwa</label>
+            </div>
+
+            <div class="row">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" name="spell_school" id="id_spell_school" aria-placeholder="Wybierz szkołę">
+                            {% for val, name in form.fields.spell_school.choices %}
+                                <option value="{{ val }}">{{ name | capfirst}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="id_spell_school">Szkoła magii</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" name="spell_level" id="id_spell_level" aria-placeholder="Poziom zaklęcia">
+                            {% for val, name in form.fields.spell_level.choices %}
+                                <option value="{{ val }}">{{ name | capfirst }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="id_spell_level">Poziom zaklęcia</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" name="casting_time" id="id_casting_time" aria-placeholder="Wybierz szkołę">
+                            {% for val, name in form.fields.casting_time.choices %}
+                                <option value="{{ val }}">{{ name | capfirst}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="id_casting_time">Czas rzucania</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" name="duration" id="id_duration" aria-placeholder="Poziom zaklęcia">
+                            {% for val, name in form.fields.duration.choices %}
+                                <option value="{{ val }}">{{ name | capfirst }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="id_duration">Czas działania</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-floating">
+                <input type="text" name="distance" class="form-control" id="id_distance" placeholder="Zasięg">
+                <label for="id_distance">Zasięg</label>
+            </div>
+
+            <div class="row">
+                <div class="col-md">
+                    <input class="form-check-input" type="checkbox" name="verbal" value="True" id="id_verbal">
+                    <label class="form-check-label" for="id_verbal">
+                        Verbal
+                    </label>
+                </div>
+                <div class="col-md">
+                    <input class="form-check-input" type="checkbox" name="somatic" value="True" id="id_somatic">
+                    <label class="form-check-label" for="id_somatic">
+                        Somatic
+                    </label>
+                </div>
+                <div class="col-md">
+                    <input class="form-check-input" type="checkbox" name="material" value="True" id="id_material">
+                    <label class="form-check-label" for="id_material">
+                        Material
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-floating">
+                <input type="text" name="material_description" class="form-control" id="id_material_description" placeholder="Nazwa zaklęcia">
+                <label for="id_material_description">Opis materiałów</label>
+            </div>
+
+            <div class="row">
+                <div class="col-md">
+                    <input class="form-check-input" type="checkbox" name="ritual" value="" id="id_ritual">
+                    <label class="form-check-label" for="id_ritual">
+                        Rytuał
+                    </label>
+                </div>
+                <div class="col-md">
+                    <input class="form-check-input" type="checkbox" name="concentration" value="" id="id_concentration">
+                    <label class="form-check-label" for="id_concentration">
+                        Wymaga koncentracji
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-floating">
+                <textarea type="text" name="description" class="form-control" id="id_description" rows=8 placeholder="Wprowadź opis"></textarea>
+                <label for="id_description">Opis</label>
+            </div>
+            <div class="form-floating">
+                <textarea type="text" name="higher_level" class="form-control" id="id_higher_level" rows=4 placeholder="Wprowadź opis dla wyższych poziomów"></textarea>
+                <label for="id_higher_level">Na wyższym poziomie</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

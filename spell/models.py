@@ -90,7 +90,7 @@ class Spell(models.Model):
     spell_level = models.CharField(max_length=1, choices=SPELL_LEVEL_CHOICES, default=0)
     casting_time = models.IntegerField(choices=CASTING_TIME_CHOICES, default=ONE_ACTION)
     duration = models.IntegerField(choices=DURATION_TIME_CHOICES, default=ONE_ACTION)
-    distance = models.CharField(max_length=50)
+    distance = models.CharField(max_length=50, blank=True)
     verbal = models.BooleanField(default=False, blank=True)
     somatic = models.BooleanField(default=False, blank=True)
     material = models.BooleanField(default=False, blank=True)

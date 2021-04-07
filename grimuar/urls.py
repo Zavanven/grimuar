@@ -25,6 +25,9 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('', user_views.home, name="home"),
 
+    # Spells
+    path('create-spell/', spell_views.create_spell, name="create_spell"),
+
     # Auth
     path('signup/', user_views.signup_user, name="signup_user"),
     path('login/', user_views.login_user, name="login_user"),
