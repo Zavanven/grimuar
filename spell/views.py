@@ -15,5 +15,5 @@ def create_spell(request):
             form.save()
             return render(request, 'spell/create_spell.html', {'form' : SpellForm(), 'alert' : 'Zaklecie zostalo dodane poprawnie.'})
         except ValueError:
-            return render(request, 'spell/create_spell.html', {'form' : SpellForm(), 'error' : 'Błąd. Jedno lub więcej pól jest błędnych.'})
+            return render(request, 'spell/create_spell.html', {'form' : SpellForm(), 'error' : form.errors })
         

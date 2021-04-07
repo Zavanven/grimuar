@@ -15,7 +15,16 @@
         {% endif %}
         {% if error %}
         <div class="alert alert-danger" role="alert">
-            {{ error }}
+            <h4 class="text-center">Błąd!</h4>
+            {% if error.title %}
+                <p><b>Tytuł</b> jest polem wymaganym.</p>
+            {% endif %}
+            {% if error.spell_school %}
+                <p><b>Szkoła magii</b> jest polem wymaganym.</p>
+            {% endif %}
+            {% if error.title %}
+                <p><b>Opis</b> jest polem wymaganym</p>
+            {% endif %}
         </div>
         {% endif %}
         <form method="POST">
