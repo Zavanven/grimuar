@@ -1,13 +1,10 @@
 {% extends 'base.html' %}
 
+{% block title %} | Stwórz zaklęcie{% endblock %}
+
 {% block content %}
-<div class="row justify-content-center mt-5">
-    <div class="col-md-5 text-center">
-        <h2>Dodaj zaklęcie</h2>
-    </div>
-</div>
 <div class="row justify-content-center mt-1">
-    <div class="col-md-6">
+    <div class="col-md-6 paper-background">
         {% if alert %}
         <div class="alert alert-success" role="alert">
             {{ alert }}
@@ -27,6 +24,7 @@
             {% endif %}
         </div>
         {% endif %}
+        <h2 class="text-center mb-4">Dodaj zaklęcie</h2>
         <form method="POST">
             {% csrf_token %}
             <div class="form-floating">
@@ -39,7 +37,7 @@
                     <div class="form-floating">
                         <select class="form-select" name="spell_school" id="id_spell_school" aria-placeholder="Wybierz szkołę">
                             {% for val, name in form.fields.spell_school.choices %}
-                                <option value="{{ val }}">{{ name | capfirst}}</option>
+                                <option value="{{ val }}">{{ name | capfirst }}</option>
                             {% endfor %}
                         </select>
                         <label for="id_spell_school"><b>Szkoła magii</b></label>
@@ -89,19 +87,19 @@
                 <div class="col-md">
                     <input class="form-check-input" type="checkbox" name="verbal" value="True" id="id_verbal">
                     <label class="form-check-label" for="id_verbal">
-                        Verbal
+                        Werbalny
                     </label>
                 </div>
                 <div class="col-md">
                     <input class="form-check-input" type="checkbox" name="somatic" value="True" id="id_somatic">
                     <label class="form-check-label" for="id_somatic">
-                        Somatic
+                        Somatyczny
                     </label>
                 </div>
                 <div class="col-md">
                     <input class="form-check-input" type="checkbox" name="material" value="True" id="id_material">
                     <label class="form-check-label" for="id_material">
-                        Material
+                        Materialny
                     </label>
                 </div>
             </div>
@@ -134,7 +132,7 @@
                 <textarea type="text" name="higher_level" class="form-control" id="id_higher_level" rows=4 placeholder="Wprowadź opis dla wyższych poziomów"></textarea>
                 <label for="id_higher_level">Na wyższym poziomie</label>
             </div>
-            <button type="submit" class="btn btn-primary">Dodaj</button>
+            <button type="submit" class="btn btn-spell">Dodaj</button>
         </form>
     </div>
 </div>

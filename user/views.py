@@ -4,11 +4,12 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
+from spell.models import Spell
 
 # Create your views here.
-
 def home(request):
-    return render(request, 'user/home.html')
+    spells = Spell.objects.all()
+    return render(request, 'user/home.html', {'spells' : spells})
 
 def show_user_info(request):
     return render(request, 'user/show_user_info.html')
