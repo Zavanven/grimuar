@@ -38,8 +38,8 @@
                     </li>
                     {% endif %}
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Szukaj zaklęcia" aria-label="Search">
+                <form class="d-flex" action="{% url 'home' %}">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Szukaj zaklęcia" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Szukaj</button>
                 </form>
                 <ul class="navbar-nav mb-2 mb-md-0">

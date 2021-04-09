@@ -3,12 +3,18 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from spell.models import Spell
 
+
 # Create your views here.
 def home(request):
-    spells = Spell.objects.all()
+    search_spell = request.GET.get('search')
+    if search_spell:
+        spells = Spell.objects.filter(Q(title__icontains=search_spell))
+    else:
+        spells = Spell.objects.all()
     return render(request, 'user/home.html', {'spells' : spells})
 
 def show_user_info(request):
