@@ -6,16 +6,34 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from spell.models import Spell
+from spell.choices import spell_level_choices
 
 
 # Create your views here.
 def home(request):
+    spells = Spell.objects.order_by('title')
+
+    # Search from navbar only
     search_spell = request.GET.get('search')
     if search_spell:
         spells = Spell.objects.filter(Q(title__icontains=search_spell))
-    else:
-        spells = Spell.objects.all()
-    return render(request, 'user/home.html', {'spells' : spells})
+        return render(request, 'user/home.html', {'spells' : spells, 'spell_level_choices' : spell_level_choices })
+
+    # title
+    if "title" in request.GET:
+        title = request.GET['title']
+        # Checking if title is empty
+        if title:
+            spells = spells.filter(title__icontains=title)
+
+    # spell level
+    if "spell_level" in request.GET:
+        spell_level = request.GET['spell_level']
+        if spell_level:
+            spells = spells.filter(spell_level__icontains=spell_level)
+    
+  
+    return render(request, 'user/home.html', {'spells' : spells, 'spell_level_choices' : spell_level_choices })
 
 def show_user_info(request):
     return render(request, 'user/show_user_info.html')

@@ -4,8 +4,25 @@
 
 {% block content %}
 <div class="paper-background">
+    <div class="h2 text-center">Szukaj zaklęcia</div>
+    <form action="{% url 'home' %}">
+        <div class="row">
+            <input class="col-md-3" type="text" name="title" placeholder="Nazwa zaklęcia" aria-label="title">
+            <div class="col-md-3">
+                <select class="form-control" name="spell_level">
+                    <option selected="true" disabled="disabled">Poziom zaklęcia</option>
+                    {% for key, value in spell_level_choices.items %}
+                        <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-spell" type="submit">Szukaj</button>
+    </form>
+</div>
 
-
+<div class="paper-background">
+{% if spells %}
 <div class="spell-labels">
     <div class="spell-labels__icon"></div>
     <div class="spell-labels__title">Nazwa zaklęcia</div>
@@ -59,6 +76,11 @@
         </div>
     </div>
 {% endfor %}
+{% else %}
+    <div class="text-center">
+        <h2>Nie ma takiego zaklęcia w grimuarze.</h2>
+    </div>
+{% endif %}
 </div>
 </div>
 {% endblock %}
