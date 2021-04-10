@@ -5,16 +5,20 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from spell.models import Spell
+from spell.models import Spell, Components, Spell_school
 from spell.choices import spell_level_choices, casting_time_choices, duration_time_choices
 
 
 # Create your views here.
 def home(request):
     spells = Spell.objects.order_by('title')
+    components = Components.objects.all()
+    spell_school = Spell_school.objects.all()
 
     context = {
         'spells' : spells,
+        'components' : components,
+        'spell_schools' : spell_school,
         'spell_level_choices' : spell_level_choices,
         'casting_time_choices' : casting_time_choices, 
         'duration_time_choices' : duration_time_choices 
@@ -51,11 +55,16 @@ def home(request):
         if duration_time:
             context['spells'] = spells.filter(duration__icontains=duration_time)
 
-    # verbal
-    if "verbal" in request.GET:
-        verbal = request.GET['verbal']
-        if verbal:
-            context['spells'] = spells.filter(verbal__exact=True)
+    # spell school
+    if "spell_school" in request.GET:
+        spell_school = request.GET['spell_school']
+        if spell_school:
+            context['spells'] = spells.filter(spell_school__title=spell_school)
+    # # verbal
+    # if "verbal" in request.GET:
+    #     verbal = request.GET['verbal']
+    #     if verbal:
+    #         context['spells'] = spells.filter(verbal__exact=True)
   
     return render(request, 'user/home.html', context)
 

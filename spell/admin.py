@@ -17,6 +17,10 @@ class Spell_schoolAdmin(admin.ModelAdmin):
 class SpellAdmin(admin.ModelAdmin):
     list_display = ('title', 'spell_level',)
 
+class ComponentsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', )
+    list_display_links = ('id', 'title',)
+
 admin.site.register(Spell_school, Spell_schoolAdmin)
 admin.site.register(Spell, SpellAdmin)
-admin.site.register(Components)
+admin.site.register(Components, ComponentsAdmin)

@@ -98,9 +98,6 @@ class Spell(models.Model):
     casting_time = models.IntegerField(choices=CASTING_TIME_CHOICES, default=ONE_ACTION)
     duration = models.IntegerField(choices=DURATION_TIME_CHOICES, default=ONE_ACTION)
     distance = models.CharField(max_length=50, blank=True)
-    verbal = models.BooleanField(default=False, blank=True)
-    somatic = models.BooleanField(default=False, blank=True)
-    material = models.BooleanField(default=False, blank=True)
     material_description = models.CharField(max_length=200, blank=True)
     concentration = models.BooleanField(default=False, blank=True)
     ritual = models.BooleanField(default=False, blank=True)
@@ -109,3 +106,17 @@ class Spell(models.Model):
     def __str__(self):
         return self.title
 
+    def is_verbal(self):
+        if self.components.filter(title="Werbalny").exists():
+            return True
+        return False
+
+    def is_somatic(self):
+        if self.components.filter(title="Somatyczny").exists():
+            return True
+        return False
+    
+    def is_material(self):
+        if self.components.filter(title="Materialny").exists():
+            return True
+        return False

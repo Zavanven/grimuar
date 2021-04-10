@@ -41,33 +41,24 @@
 
         </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-3 d-flex flex-column align-items-center">
-                <h4>Komponenty</h4>
-                <div class="">
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" name="verbal" class="form-check-input" id="verbal">
-                        <label class="form-check-label label-verbal" for="verbal"></label>
-                    </div>
-    
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" name="somatic" class="form-check-input" id="somatic">
-                        <label class="form-check-label label-somatic" for="somatic"></label>
-                    </div>
-    
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" name="material" class="form-check-input" id="material">
-                        <label class="form-check-label label-material" for="material"></label>
-                    </div>
-                </div>
-                
-            </div>         
+        <div class="row">
+            <div class="col-md mb-2">
+                <select class="form-select" name="spell_school">
+                    <option selected="true" disabled="disabled">Szkoła magii</option>
+                    {% for spell_school in spell_schools %}
+                    <option value="{{ spell_school.title }}">{{ spell_school.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
+
         <div class="row justify-content-center">
             <button class="btn btn-spell" type="submit">Szukaj</button>
         </div>
     </form>
 </div>
+
+{{ components }}
 
 <div class="paper-background">
     {% if spells %}
@@ -93,22 +84,23 @@
                 <div class="spell-duration">{{ spell.get_duration_display | capfirst }}</div>
                 <div class="spell-distance">{{ spell.distance | capfirst }}</div>
                 <div class="spell-components">
-                    {% if spell.verbal %}
-                    <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
+
+                    {% if spell.is_verbal %}
+                        <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
                     {% else %}
-                    <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
+                        <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
 
-                    {% if spell.somatic %}
-                    <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
+                    {% if spell.is_somatic %}
+                        <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
                     {% else %}
-                    <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
+                        <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
 
-                    {% if spell.material %}
-                    <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
+                    {% if spell.is_material %}
+                        <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
                     {% else %}
-                    <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
+                        <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
                 </div>
             </div>

@@ -159,15 +159,15 @@ form .row {
     height: 32px;
 }
 
-#verbal,
-#somatic,
-#material {
+#werbalny,
+#somatyczny,
+#materialny {
     display: none;
 }
 
-.label-verbal,
-.label-somatic,
-.label-material {
+.label-werbalny,
+.label-somatyczny,
+.label-materialny {
     width: 40px;
     height: 40px;
     background-repeat: no-repeat;
@@ -178,26 +178,38 @@ form .row {
     padding: 0;
 }
 
-.label-verbal {
+.label-werbalny {
     background-image: url("../img/werbalny-brak.svg");
 }
 
-.label-somatic {
+.label-somatyczny {
     background-image: url("../img/somatyczny-brak.svg");
 }
 
-.label-material {
+.label-materialny {
     background-image: url("../img/materialny-brak.svg");
 }
 
-#verbal:checked + .label-verbal {
+#werbalny:checked + .label-werbalny {
     background-image: url("../img/werbalny.svg");
 }
 
-#somatic:checked + .label-somatic {
+#werbalny:indeterminate + .label-werbalny {
+    background-image: url("../img/werbalny-neutral.svg")
+}
+
+#somatyczny:indeterminate + .label-somatyczny {
+    background-image: url("../img/somatyczny-neutral.svg")
+}
+
+#materialny:indeterminate + .label-materialny {
+    background-image: url("../img/materialny-neutral.svg")
+}
+
+#somatyczny:checked + .label-somatyczny {
     background-image: url("../img/somatyczny.svg");
 }
 
-#material:checked + .label-material {
+#materialny:checked + .label-materialny {
     background-image: url("../img/materialny.svg");
 }
