@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Spell_school, Spell
+from .models import Spell_school, Spell, Components
 
 # Register your models here.
 class Spell_schoolAdmin(admin.ModelAdmin):
@@ -19,3 +19,4 @@ class SpellAdmin(admin.ModelAdmin):
 
 admin.site.register(Spell_school, Spell_schoolAdmin)
 admin.site.register(Spell, SpellAdmin)
+admin.site.register(Components)

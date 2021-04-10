@@ -33,6 +33,7 @@ body {
     border-color: #eedfb7;
     font-size: 20px;
     letter-spacing: 0.9px;
+    width: min-content;
 }
 
 /* Create spell */
@@ -156,4 +157,47 @@ form .row {
 .spell-material {
     width: 32px;
     height: 32px;
+}
+
+#verbal,
+#somatic,
+#material {
+    display: none;
+}
+
+.label-verbal,
+.label-somatic,
+.label-material {
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+}
+
+.form-check-inline {
+    margin: 0;
+    padding: 0;
+}
+
+.label-verbal {
+    background-image: url("../img/werbalny-brak.svg");
+}
+
+.label-somatic {
+    background-image: url("../img/somatyczny-brak.svg");
+}
+
+.label-material {
+    background-image: url("../img/materialny-brak.svg");
+}
+
+#verbal:checked + .label-verbal {
+    background-image: url("../img/werbalny.svg");
+}
+
+#somatic:checked + .label-somatic {
+    background-image: url("../img/somatyczny.svg");
+}
+
+#material:checked + .label-material {
+    background-image: url("../img/materialny.svg");
 }

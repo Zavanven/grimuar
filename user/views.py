@@ -6,34 +6,58 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from spell.models import Spell
-from spell.choices import spell_level_choices
+from spell.choices import spell_level_choices, casting_time_choices, duration_time_choices
 
 
 # Create your views here.
 def home(request):
     spells = Spell.objects.order_by('title')
 
+    context = {
+        'spells' : spells,
+        'spell_level_choices' : spell_level_choices,
+        'casting_time_choices' : casting_time_choices, 
+        'duration_time_choices' : duration_time_choices 
+    }
+
     # Search from navbar only
     search_spell = request.GET.get('search')
     if search_spell:
-        spells = Spell.objects.filter(Q(title__icontains=search_spell))
-        return render(request, 'user/home.html', {'spells' : spells, 'spell_level_choices' : spell_level_choices })
+        context['spells']= Spell.objects.filter(Q(title__icontains=search_spell))
+        return render(request, 'user/home.html', context)
 
     # title
     if "title" in request.GET:
         title = request.GET['title']
         # Checking if title is empty
         if title:
-            spells = spells.filter(title__icontains=title)
+            context['spells'] = spells.filter(title__icontains=title)
 
     # spell level
     if "spell_level" in request.GET:
         spell_level = request.GET['spell_level']
         if spell_level:
-            spells = spells.filter(spell_level__icontains=spell_level)
+            context['spells'] = spells.filter(spell_level__icontains=spell_level)
     
+    # casting time
+    if "casting_time" in request.GET:
+        casting_time = request.GET['casting_time']
+        if casting_time:
+            context['spells'] = spells.filter(casting_time__icontains=casting_time)
+    
+    # duration time
+    if "duration_time" in request.GET:
+        duration_time = request.GET['duration_time']
+        if duration_time:
+            context['spells'] = spells.filter(duration__icontains=duration_time)
+
+    # verbal
+    if "verbal" in request.GET:
+        verbal = request.GET['verbal']
+        if verbal:
+            context['spells'] = spells.filter(verbal__exact=True)
   
-    return render(request, 'user/home.html', {'spells' : spells, 'spell_level_choices' : spell_level_choices })
+    return render(request, 'user/home.html', context)
 
 def show_user_info(request):
     return render(request, 'user/show_user_info.html')

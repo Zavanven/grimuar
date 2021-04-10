@@ -24,6 +24,13 @@ class Spell_school(models.Model):
         verbose_name = _("Spell school")
         verbose_name_plural = _("Spell schools")
 
+# Komponenty
+class Components(models.Model):
+    title = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
+
 class Spell(models.Model):
     SPELL_LEVEL_CHOICES = [
         ('0', 'sztuczka'),
@@ -97,6 +104,7 @@ class Spell(models.Model):
     material_description = models.CharField(max_length=200, blank=True)
     concentration = models.BooleanField(default=False, blank=True)
     ritual = models.BooleanField(default=False, blank=True)
+    components = models.ManyToManyField(Components, blank=True)
 
     def __str__(self):
         return self.title

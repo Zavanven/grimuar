@@ -4,83 +4,130 @@
 
 {% block content %}
 <div class="paper-background">
-    <div class="h2 text-center">Szukaj zaklęcia</div>
+    <div class="h2 text-center">Filtruj zaklęcia</div>
     <form action="{% url 'home' %}">
         <div class="row">
-            <input class="col-md-3" type="text" name="title" placeholder="Nazwa zaklęcia" aria-label="title">
-            <div class="col-md-3">
-                <select class="form-control" name="spell_level">
+
+            <div class="col-md mb-2">
+                <input class="form-control" type="text" name="title" placeholder="Nazwa zaklęcia" aria-label="title">
+            </div>
+
+            <div class="col-md mb-2">
+                <select class="form-select" name="spell_level">
                     <option selected="true" disabled="disabled">Poziom zaklęcia</option>
                     {% for key, value in spell_level_choices.items %}
-                        <option value="{{ key }}">{{ value }}</option>
+                    <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
                 </select>
             </div>
+
+            <div class="col-md mb-2">
+                <select class="form-select" name="casting_time">
+                    <option selected="true" disabled="disabled">Czas rzucania</option>
+                    {% for key, value in casting_time_choices.items %}
+                    <option value="{{ key }}">{{ value | capfirst }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md mb-2">
+                <select class="form-select" name="duration_time">
+                    <option selected="true" disabled="disabled">Czas trwania</option>
+                    {% for key, value in duration_time_choices.items %}
+                    <option value="{{ key }}">{{ value | capfirst }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
         </div>
-        <button class="btn btn-spell" type="submit">Szukaj</button>
+
+        <div class="row justify-content-center">
+            <div class="col-md-3 d-flex flex-column align-items-center">
+                <h4>Komponenty</h4>
+                <div class="">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="verbal" class="form-check-input" id="verbal">
+                        <label class="form-check-label label-verbal" for="verbal"></label>
+                    </div>
+    
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="somatic" class="form-check-input" id="somatic">
+                        <label class="form-check-label label-somatic" for="somatic"></label>
+                    </div>
+    
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="material" class="form-check-input" id="material">
+                        <label class="form-check-label label-material" for="material"></label>
+                    </div>
+                </div>
+                
+            </div>         
+        </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-spell" type="submit">Szukaj</button>
+        </div>
     </form>
 </div>
 
 <div class="paper-background">
-{% if spells %}
-<div class="spell-labels">
-    <div class="spell-labels__icon"></div>
-    <div class="spell-labels__title">Nazwa zaklęcia</div>
-    <div class="spell-labels__spell-level">Poziom</div>
-    <div class="spell-labels__casting-time">Czas rzucania</div>
-    <div class="spell-labels__duration">Czas trwania</div>
-    <div class="spell-labels__distance">Zasięg</div>
-    <div class="spell-labels__components">Komponenty</div>
-</div>
-<div class="accordion" id="spell_list"></div>
-{% for spell in spells %}
+    {% if spells %}
+    <div class="spell-labels">
+        <div class="spell-labels__icon"></div>
+        <div class="spell-labels__title">Nazwa zaklęcia</div>
+        <div class="spell-labels__spell-level">Poziom</div>
+        <div class="spell-labels__casting-time">Czas rzucania</div>
+        <div class="spell-labels__duration">Czas trwania</div>
+        <div class="spell-labels__distance">Zasięg</div>
+        <div class="spell-labels__components">Komponenty</div>
+    </div>
+    <div class="accordion" id="spell_list"></div>
+    {% for spell in spells %}
     <div class="accordion-item">
         <div class="accordion-header">
-            <div class="accordion-button collapsed spell-group" type="button" data-bs-toggle="collapse" data-bs-target="#id_{{ spell.id }}"
-                aria-expanded="true" aria-controls="id_{{ spell.id }}">
-                <div class="spell-icon"><img src="{{ spell.spell_school.image.url }}" alt="" srcset=""></div>   
+            <div class="accordion-button collapsed spell-group" type="button" data-bs-toggle="collapse"
+                data-bs-target="#id_{{ spell.id }}" aria-expanded="true" aria-controls="id_{{ spell.id }}">
+                <div class="spell-icon"><img src="{{ spell.spell_school.image.url }}" alt="" srcset=""></div>
                 <div class="spell-title">{{ spell.title | capfirst }}</div>
-                <div class="spell-level">{{ spell.get_spell_level_display | capfirst }}</div>   
-                <div class="spell-casting-time">{{ spell.get_casting_time_display | capfirst }}</div>   
-                <div class="spell-duration">{{ spell.get_duration_display | capfirst }}</div>   
+                <div class="spell-level">{{ spell.get_spell_level_display | capfirst }}</div>
+                <div class="spell-casting-time">{{ spell.get_casting_time_display | capfirst }}</div>
+                <div class="spell-duration">{{ spell.get_duration_display | capfirst }}</div>
                 <div class="spell-distance">{{ spell.distance | capfirst }}</div>
                 <div class="spell-components">
                     {% if spell.verbal %}
-                        <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
+                    <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
 
                     {% if spell.somatic %}
-                        <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
+                    <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
 
                     {% if spell.material %}
-                        <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
+                    <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
                 </div>
             </div>
         </div>
-        <div id="id_{{ spell.id }}" class="accordion-collapse collapse"
-            data-bs-parent="#spell_list">
+        <div id="id_{{ spell.id }}" class="accordion-collapse collapse" data-bs-parent="#spell_list">
             <div class="accordion-body">
                 <p>{{ spell.description }}</p>
                 {% if spell.higher_level %}
-                <p><span class="spell-higher-level">Na wyższych kręgach.</span> {{ spell.higher_level }}    </p>
+                <p><span class="spell-higher-level">Na wyższych kręgach.</span> {{ spell.higher_level }} </p>
                 {% endif %}
             </div>
         </div>
     </div>
-{% endfor %}
-{% else %}
+    {% endfor %}
+    {% else %}
     <div class="text-center">
         <h2>Nie ma takiego zaklęcia w grimuarze.</h2>
     </div>
-{% endif %}
+    {% endif %}
 </div>
 </div>
 {% endblock %}
