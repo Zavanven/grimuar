@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import mark_safe
 from django.core.files.images import get_image_dimensions
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Spell_school(models.Model):
@@ -92,7 +93,8 @@ class Spell(models.Model):
 
     title = models.CharField(max_length=200)
     spell_school = models.ForeignKey(Spell_school, on_delete=models.SET_NULL, null=True)
-    description = models.TextField()
+    description = RichTextField(blank=True, null=True)
+    #description = models.TextField()
     higher_level = models.TextField(blank=True)
     spell_level = models.CharField(max_length=1, choices=SPELL_LEVEL_CHOICES, default=0)
     casting_time = models.IntegerField(choices=CASTING_TIME_CHOICES, default=ONE_ACTION)

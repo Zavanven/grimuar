@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} | Stwórz zaklęcie{% endblock %}
 
@@ -104,8 +105,8 @@
             </div>
             
             <div class="form-floating">
-                <textarea type="text" name="description" class="form-control" id="id_description" rows=8 placeholder="Wprowadź opis"></textarea>
-                <label for="id_description"><b>Opis</b></label>
+                {{ form.description }}
+                {{ form.media }}
             </div>
             <div class="form-floating">
                 <textarea type="text" name="higher_level" class="form-control" id="id_higher_level" rows=4 placeholder="Wprowadź opis dla wyższych poziomów"></textarea>

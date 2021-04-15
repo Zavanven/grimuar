@@ -245,3 +245,7 @@ form .row {
 	justify-content: space-evenly;
     align-items: center;
 }
+
+.django-ckeditor-widget {
+    width: 100%;
+}

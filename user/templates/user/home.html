@@ -140,7 +140,7 @@
         </div>
         <div id="id_{{ spell.id }}" class="accordion-collapse collapse" data-bs-parent="#spell_list">
             <div class="accordion-body">
-                <p>{{ spell.description }}</p>
+                <p>{{ spell.description | safe }}</p>
                 {% if spell.higher_level %}
                 <p><span class="spell-higher-level">Na wyższych kręgach.</span> {{ spell.higher_level }} </p>
                 {% endif %}
