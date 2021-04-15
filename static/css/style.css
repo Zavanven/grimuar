@@ -151,9 +151,32 @@ form .row {
     font-weight: 600;
 }
 
+.spell-components,
+.spell-labels__components {
+    width: 105px;
+}
+
+.spell-concentration,
+.spell-labels__concentration {
+    width: 100px;
+}
+
+.spell-ritual,
+.spell-labels__ritual {
+    width: 50px;
+}
+
+.spell-concentration,
+.spell-ritual {
+    display: flex;
+    justify-content: center;
+}
+
 .spell-somatic,
 .spell-verbal,
-.spell-material {
+.spell-material,
+.spell-concentration-image,
+.spell-ritual-image {
     width: 32px;
     height: 32px;
 }

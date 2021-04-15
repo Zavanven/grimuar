@@ -70,6 +70,8 @@
         <div class="spell-labels__duration">Czas trwania</div>
         <div class="spell-labels__distance">Zasięg</div>
         <div class="spell-labels__components">Komponenty</div>
+        <div class="spell-labels__concentration">Koncentracja</div>
+        <div class="spell-labels__ritual">Rytuał</div>
     </div>
     <div class="accordion" id="spell_list"></div>
     {% for spell in spells %}
@@ -101,6 +103,20 @@
                         <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
                     {% else %}
                         <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
+                    {% endif %}
+                </div>
+                <div class="spell-concentration">
+                    {% if spell.concentration %}
+                        <img class="spell-concentration-image" src="{% static 'img/koncentracja.svg' %}" alt="" srcset="">
+                    {% else %}
+                        <img class="spell-concentration-image" src="{% static 'img/koncentracja-brak.svg' %}" alt="" srcset="">
+                    {% endif %}
+                </div>
+                <div class="spell-ritual">
+                    {% if spell.ritual %}
+                        <img class="spell-ritual-image" src="{% static 'img/rytulal.svg' %}" alt="" srcset="">
+                    {% else %}
+                        <img class="spell-ritual-image" src="{% static 'img/rytulal-brak.svg' %}" alt="" srcset="">
                     {% endif %}
                 </div>
             </div>
