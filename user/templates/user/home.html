@@ -29,6 +29,9 @@
                     {% endfor %}
                 </select>
             </div>
+        </div>
+
+        <div class="row">
 
             <div class="col-md mb-2">
                 <select class="form-select" name="duration_time">
@@ -39,9 +42,6 @@
                 </select>
             </div>
 
-        </div>
-
-        <div class="row">
             <div class="col-md mb-2">
                 <select class="form-select" name="spell_school">
                     <option selected="true" disabled="disabled">Szkoła magii</option>
@@ -49,6 +49,23 @@
                     <option value="{{ spell_school.title }}">{{ spell_school.title }}</option>
                     {% endfor %}
                 </select>
+            </div>
+
+            <div class="col-md mb-2 spell-rest">
+                <div class="search-concentration">
+                    <input class="form-check-input" name="spell_concentration" type="checkbox" value="True" id="spell_concentration">
+                    <label class="form-check-label" for="spell_concentration">
+                        Koncentracja
+                    </label>
+                </div>
+                
+                <div class="search-ritual">
+                    <input class="form-check-input" name="spell_ritual" type="checkbox" value="True" id="spell_ritual">
+                    <label class="form-check-label" for="spell_ritual">
+                        Rytułał
+                    </label>
+                </div>
+                
             </div>
         </div>
 

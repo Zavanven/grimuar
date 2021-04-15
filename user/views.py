@@ -61,7 +61,14 @@ def home(request):
         if spell_school:
             context['spells'] = spells.filter(spell_school__title=spell_school)
 
-  
+    # concentration
+    if "spell_concentration" in request.GET:
+        context['spells'] = spells.filter(concentration=True)
+
+    # ritual
+    if "spell_ritual" in request.GET:
+        context['spells'] = spells.filter(ritual=True)
+
     return render(request, 'user/home.html', context)
 
 def show_user_info(request):

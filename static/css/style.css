@@ -239,3 +239,9 @@ form .row {
 .btn-search {
     width: 100px;
 }
+
+.spell-rest {
+	display: flex;
+	justify-content: space-evenly;
+    align-items: center;
+}
