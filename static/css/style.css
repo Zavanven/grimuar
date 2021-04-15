@@ -33,7 +33,6 @@ body {
     border-color: #eedfb7;
     font-size: 20px;
     letter-spacing: 0.9px;
-    width: min-content;
 }
 
 /* Create spell */
@@ -212,4 +211,8 @@ form .row {
 
 #materialny:checked + .label-materialny {
     background-image: url("../img/materialny.svg");
+}
+
+.btn-search {
+    width: 100px;
 }

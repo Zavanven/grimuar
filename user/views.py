@@ -60,11 +60,7 @@ def home(request):
         spell_school = request.GET['spell_school']
         if spell_school:
             context['spells'] = spells.filter(spell_school__title=spell_school)
-    # # verbal
-    # if "verbal" in request.GET:
-    #     verbal = request.GET['verbal']
-    #     if verbal:
-    #         context['spells'] = spells.filter(verbal__exact=True)
+
   
     return render(request, 'user/home.html', context)
 
