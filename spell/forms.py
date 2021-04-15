@@ -1,5 +1,5 @@
-from django.forms import ModelForm
-from .models import Spell
+from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple
+from .models import Spell, Components
 
 class SpellForm(ModelForm):
     class Meta:
@@ -17,3 +17,8 @@ class SpellForm(ModelForm):
             'concentration',
             'ritual',
         ]
+
+    components = ModelMultipleChoiceField(
+        queryset=Components.objects.all(),
+        widget=CheckboxSelectMultiple
+    )

@@ -249,3 +249,9 @@ form .row {
 .django-ckeditor-widget {
     width: 100%;
 }
+
+.col-components {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

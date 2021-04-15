@@ -84,6 +84,14 @@
                 <label for="id_distance">Zasięg</label>
             </div>
 
+            <div class="row">
+                <div class="col-md col-components">
+                    {% for component in form.components %}
+                        {{ component }}
+                    {% endfor %}
+                </div>
+            </div>
+
             <div class="form-floating">
                 <input type="text" name="material_description" class="form-control" id="id_material_description" placeholder="Nazwa zaklęcia">
                 <label for="id_material_description">Opis materiałów</label>

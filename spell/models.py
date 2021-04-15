@@ -73,6 +73,7 @@ class Spell(models.Model):
         (ONE_HOUR, '1 godzina'),
         (EIGHT_HOURS, '8 godzin'),
         (TWENTY_FOUR_HOURS, '24 godziny'),
+        (SEVEN_DAYS, '7 dni'),
         (TEN_DAYS, '10 dni'),
         (THIRTY_DAYS, '30 dni'),
         (SPECIAL, 'specjalny'),
