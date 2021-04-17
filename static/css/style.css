@@ -266,6 +266,15 @@ form .row {
     flex-shrink: 0;
 }
 
+.details-title {
+    color: #58170D;
+    font-weight: 900;
+}
+
+.margin-right-3 {
+    margin-right: 1rem;
+}
+
 @media screen and (max-width: 1400px) {
     .spell-labels__ritual,
     .spell-ritual,
@@ -300,5 +309,16 @@ form .row {
     .spell-labels > div,
     .spell-group > div {
         flex-shrink: 1;
+    }
+
+    .details .row div {
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .spell-labels__spell-level,
+    .spell-level {
+        display: none;
     }
 }

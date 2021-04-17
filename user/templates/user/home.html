@@ -75,8 +75,6 @@
     </form>
 </div>
 
-{{ components }}
-
 <div class="paper-background">
     {% if spells %}
     <div class="spell-labels">
@@ -141,6 +139,116 @@
         </div>
         <div id="id_{{ spell.id }}" class="accordion-collapse collapse" data-bs-parent="#spell_list">
             <div class="accordion-body">
+                <div class="details">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Szkoła magii:
+                            </div>
+                            <div class="details-subtitle">
+                                {{ spell.spell_school.title }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Poziom:
+                            </div>
+                            <div class="details-subtitle">
+                                {{ spell.get_spell_level_display | capfirst }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Czas rzucania:
+                            </div>
+                            <div class="details-subtitle">
+                                {{ spell.get_casting_time_display | capfirst }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Czas trwania:
+                            </div>
+                            <div class="details-subtitle">
+                                {{ spell.get_duration_display | capfirst }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Zasięg zaklęcia:
+                            </div>
+                            <div class="details-subtitle">
+                                {{ spell.distance | capfirst }}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Koncentracja:
+                            </div>
+                            <div class="details-subtitle">
+                                {% if spell.concentration %}
+                                    Tak <img class="spell-concentration-image" src="{% static 'img/koncentracja.svg' %}" alt="" srcset="">
+                                {% else %}
+                                    Nie <img class="spell-concentration-image" src="{% static 'img/koncentracja-brak.svg' %}" alt="" srcset="">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Rytułał:
+                            </div>
+                            <div class="details-subtitle">
+                                {% if spell.ritual %}
+                                    Tak <img class="spell-ritual-image" src="{% static 'img/rytulal.svg' %}" alt="" srcset="">
+                                {% else %}
+                                    Nie <img class="spell-ritual-image" src="{% static 'img/rytulal-brak.svg' %}" alt="" srcset="">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 d-flex flex-md-column flex-sm-row mt-sm-3">
+                            <div class="details-title">
+                                Komponenty:
+                            </div>
+                            <div class="details-subtitle">
+                                {% if spell.is_verbal %}
+                                    <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
+                                {% else %}
+                                    <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
+                                {% endif %}
+
+                                {% if spell.is_somatic %}
+                                    <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
+                                {% else %}
+                                    <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
+                                {% endif %}
+
+                                {% if spell.is_material %}
+                                    <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
+                                {% else %}
+                                    <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if spell.is_material %}
+                    <div class="row">
+                        <div class="col-md d-flex">
+                            <div class="details-title margin-right-3">
+                                Komponent materialny:
+                            </div>
+                            <div class="details-subtitle">
+                                {{ spell.material_description }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+                <hr>
                 <p>{{ spell.description | safe }}</p>
                 {% if spell.higher_level %}
                 <p><span class="spell-higher-level">Na wyższych kręgach.</span> {{ spell.higher_level }} </p>
