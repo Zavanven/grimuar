@@ -3,9 +3,15 @@
 
 
 {% block content %}
-<div class="paper-background">
-    <div class="h2 text-center">Filtruj zaklęcia</div>
-    <form action="{% url 'home' %}">
+<div id="search-wrapper" class="paper-background">
+    <div id="search-title" type="button" data-bs-toggle="collapse" data-bs-target="#id_search-field"
+        aria-expanded="true" aria-controls="id_search-field" class="h2 text-center d-flex flex-column align-items-center collapsed">
+        <div>Filtruj zaklęcia</div>
+        <div class="arrow"></div>
+    </div>
+
+    <form id="id_search-field" class="accordion-collapse collapse" data-bs-parent="#search-wrapper"
+        action="{% url 'home' %}">
         <div class="row">
 
             <div class="col-md mb-2">
@@ -53,19 +59,20 @@
 
             <div class="col-md mb-2 spell-rest">
                 <div class="search-concentration">
-                    <input class="form-check-input" name="spell_concentration" type="checkbox" value="True" id="spell_concentration">
+                    <input class="form-check-input" name="spell_concentration" type="checkbox" value="True"
+                        id="spell_concentration">
                     <label class="form-check-label" for="spell_concentration">
                         Koncentracja
                     </label>
                 </div>
-                
+
                 <div class="search-ritual">
                     <input class="form-check-input" name="spell_ritual" type="checkbox" value="True" id="spell_ritual">
                     <label class="form-check-label" for="spell_ritual">
                         Rytułał
                     </label>
                 </div>
-                
+
             </div>
         </div>
 
@@ -104,35 +111,36 @@
                 <div class="spell-components">
 
                     {% if spell.is_verbal %}
-                        <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
+                    <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
 
                     {% if spell.is_somatic %}
-                        <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
+                    <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
 
                     {% if spell.is_material %}
-                        <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
+                    <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
                     {% endif %}
                 </div>
                 <div class="spell-concentration">
                     {% if spell.concentration %}
-                        <img class="spell-concentration-image" src="{% static 'img/koncentracja.svg' %}" alt="" srcset="">
+                    <img class="spell-concentration-image" src="{% static 'img/koncentracja.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-concentration-image" src="{% static 'img/koncentracja-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-concentration-image" src="{% static 'img/koncentracja-brak.svg' %}" alt=""
+                        srcset="">
                     {% endif %}
                 </div>
                 <div class="spell-ritual">
                     {% if spell.ritual %}
-                        <img class="spell-ritual-image" src="{% static 'img/rytulal.svg' %}" alt="" srcset="">
+                    <img class="spell-ritual-image" src="{% static 'img/rytulal.svg' %}" alt="" srcset="">
                     {% else %}
-                        <img class="spell-ritual-image" src="{% static 'img/rytulal-brak.svg' %}" alt="" srcset="">
+                    <img class="spell-ritual-image" src="{% static 'img/rytulal-brak.svg' %}" alt="" srcset="">
                     {% endif %}
                 </div>
             </div>
@@ -190,9 +198,11 @@
                             </div>
                             <div class="details-subtitle">
                                 {% if spell.concentration %}
-                                    Tak <img class="spell-concentration-image" src="{% static 'img/koncentracja.svg' %}" alt="" srcset="">
+                                Tak <img class="spell-concentration-image" src="{% static 'img/koncentracja.svg' %}"
+                                    alt="" srcset="">
                                 {% else %}
-                                    Nie <img class="spell-concentration-image" src="{% static 'img/koncentracja-brak.svg' %}" alt="" srcset="">
+                                Nie <img class="spell-concentration-image"
+                                    src="{% static 'img/koncentracja-brak.svg' %}" alt="" srcset="">
                                 {% endif %}
                             </div>
                         </div>
@@ -202,9 +212,11 @@
                             </div>
                             <div class="details-subtitle">
                                 {% if spell.ritual %}
-                                    Tak <img class="spell-ritual-image" src="{% static 'img/rytulal.svg' %}" alt="" srcset="">
+                                Tak <img class="spell-ritual-image" src="{% static 'img/rytulal.svg' %}" alt=""
+                                    srcset="">
                                 {% else %}
-                                    Nie <img class="spell-ritual-image" src="{% static 'img/rytulal-brak.svg' %}" alt="" srcset="">
+                                Nie <img class="spell-ritual-image" src="{% static 'img/rytulal-brak.svg' %}" alt=""
+                                    srcset="">
                                 {% endif %}
                             </div>
                         </div>
@@ -214,21 +226,23 @@
                             </div>
                             <div class="details-subtitle">
                                 {% if spell.is_verbal %}
-                                    <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
+                                <img class="spell-verbal" src="{% static 'img/werbalny.svg' %}" alt="" srcset="">
                                 {% else %}
-                                    <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
+                                <img class="spell-verbal" src="{% static 'img/werbalny-brak.svg' %}" alt="" srcset="">
                                 {% endif %}
 
                                 {% if spell.is_somatic %}
-                                    <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
+                                <img class="spell-somatic" src="{% static 'img/somatyczny.svg' %}" alt="" srcset="">
                                 {% else %}
-                                    <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt="" srcset="">
+                                <img class="spell-somatic" src="{% static 'img/somatyczny-brak.svg' %}" alt=""
+                                    srcset="">
                                 {% endif %}
 
                                 {% if spell.is_material %}
-                                    <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
+                                <img class="spell-material" src="{% static 'img/materialny.svg' %}" alt="" srcset="">
                                 {% else %}
-                                    <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt="" srcset="">
+                                <img class="spell-material" src="{% static 'img/materialny-brak.svg' %}" alt=""
+                                    srcset="">
                                 {% endif %}
                             </div>
                         </div>
@@ -246,7 +260,7 @@
                         </div>
                     </div>
                     {% endif %}
-                    
+
                 </div>
                 <hr>
                 <p>{{ spell.description | safe }}</p>
