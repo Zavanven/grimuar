@@ -1,12 +1,74 @@
+@font-face {
+    font-family: montserat-medium;
+    src: url("../fonts/Montserrat/Montserrat-Medium.ttf");
+}
+
+@font-face {
+    font-family: montserrat-regular;
+    src: url("../fonts/Montserrat/Montserrat-Regular.ttf");
+}
+
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
     min-height: 100vh;
     background: url("../img/type.png");
 }
 
+.navbar {
+    border-bottom: 1px solid #58170D;
+}
+
 .navbar-brand img {
     width: 40px;
     height: auto;
+}
+
+.nav-item,
+#search-title {
+    font-family: montserat-medium;
+}
+
+.nav-link {
+    color: #58170D !important;
+}
+
+.stroke ul li a,
+.stroke ul li a::after {
+    transition: all .5s;
+}
+
+.stroke ul li a {
+  position: relative;
+}
+
+.stroke ul li a::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #58170D;
+    height: 2px;
+}
+
+.stroke ul li a.active::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 90%;
+    content: '.';
+    color: transparent;
+    background: #58170D;
+    height: 2px;
+}
+
+.stroke ul li a:hover:after {
+    width: 90%;
 }
 
 .accordion-button:not(.collapsed)::after { 
@@ -33,6 +95,7 @@ body {
     border-color: #eedfb7;
     font-size: 20px;
     letter-spacing: 0.9px;
+    font-family: montserrat-regular;
 }
 
 /* Create spell */
@@ -86,13 +149,12 @@ form .row {
     padding: 1rem 1.25rem;
     display: flex;
     font-weight: 600;
+    color: #58170D;
 }
 
 .spell-group {
     background-color: #eedfb7;
 }
-
-
 
 .btn-spell:hover {
     background-color: #dab965;  
@@ -158,7 +220,7 @@ form .row {
 
 .spell-concentration,
 .spell-labels__concentration {
-    width: 100px;
+    width: 115px;
 }
 
 .spell-ritual,
@@ -170,6 +232,7 @@ form .row {
 .spell-ritual {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .spell-somatic,
@@ -264,6 +327,8 @@ form .row {
 .spell-labels > div,
 .spell-group > div {
     flex-shrink: 0;
+    font-family: montserat-medium;
+    font-size: 14px;
 }
 
 .details-title {
@@ -277,19 +342,29 @@ form .row {
 
 .arrow {
     flex-shrink: 0;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
     content: "";
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    background-image: url("../img/szukaj.svg");
     background-repeat: no-repeat;
-    background-size: 1.25rem;
+    background-size: 2.25rem;
     transition: transform .2s ease-in-out;
 }
 
+#search-title {
+    color: #58170D;
+    
+}
+
 #search-title:not(.collapsed) .arrow {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    background-image: url("../img/szukaj.svg");
     transform: rotate(180deg);
 }
+
+.background-light {
+    background-color: #f3e8cc;
+}
+
 @media screen and (max-width: 1400px) {
     .spell-labels__ritual,
     .spell-ritual,
@@ -328,6 +403,14 @@ form .row {
 
     .details .row div {
         justify-content: space-between;
+    }
+
+    .stroke ul li a {
+        position: relative;
+    }
+    
+    .stroke ul li a::after {
+        display: none;
     }
 }
 

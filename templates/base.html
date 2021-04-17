@@ -10,6 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Krzysztof 'Avan' Kawa">
     <title>Grimuar{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -20,27 +21,34 @@
 
 <body>
 
-    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark mb-4">
+    <nav class="navbar sticky-top navbar-expand-md navbar-light background-light mb-4">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="https://game-icons.net/1x1/lorc/bookmarklet.html" srcset=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="collapse navbar-collapse stroke" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
+                        {% if '/' == request.path %}
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Lista zaklęć</a>
+                        {% else %}
+                        <a class="nav-link" aria-current="page" href="{% url 'home' %}">Lista zaklęć</a>
+                        {% endif %}
                     </li>
                     {% if request.user|in_group:"Editor"%}
                     <li class="nav-item">
+                        {% if 'create-spell' in request.path %}
+                        <a class="nav-link active" href="{% url 'create_spell' %}">Dodaj zaklęcie</a>
+                        {% else %}
                         <a class="nav-link" href="{% url 'create_spell' %}">Dodaj zaklęcie</a>
+                        {% endif %}
                     </li>
                     {% endif %}
                 </ul>
                 <form class="d-flex" action="{% url 'home' %}">
                     <input class="form-control me-2" type="search" name="search" placeholder="Szukaj zaklęcia" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Szukaj</button>
                 </form>
                 <ul class="navbar-nav mb-2 mb-md-0">
                     {% if user.is_authenticated %}
