@@ -153,7 +153,7 @@ form .row {
 
 .spell-components,
 .spell-labels__components {
-    width: 105px;
+    width: 110px;
 }
 
 .spell-concentration,
@@ -254,4 +254,51 @@ form .row {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.gutter {
+    height: 20px;
+    width: 20px;
+}
+
+.spell-labels > div,
+.spell-group > div {
+    flex-shrink: 0;
+}
+
+@media screen and (max-width: 1400px) {
+    .spell-labels__ritual,
+    .spell-ritual,
+    .spell-labels__concentration,
+    .spell-concentration {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .spell-labels__components,
+    .spell-components {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .spell-labels__distance,
+    .spell-distance,
+    .spell-labels__duration,
+    .spell-duration {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .spell-labels__casting-time,
+    .spell-casting-time {
+        display: none;
+    }
+
+    .spell-labels > div,
+    .spell-group > div {
+        flex-shrink: 1;
+    }
 }
