@@ -5,7 +5,8 @@
 {% block content %}
 <div id="search-wrapper" class="paper-background">
     <div id="search-title" type="button" data-bs-toggle="collapse" data-bs-target="#id_search-field"
-        aria-expanded="true" aria-controls="id_search-field" class="text-center d-flex flex-column align-items-center collapsed mb-3">
+        aria-expanded="true" aria-controls="id_search-field"
+        class="text-center d-flex flex-column align-items-center collapsed mb-3">
         <div class="h2">Filtruj zaklęcia</div>
         <div class="arrow"></div>
     </div>
@@ -278,4 +279,40 @@
     {% endif %}
 </div>
 </div>
+
+{% if spells.has_other_pages %}
+<nav aria-label="Pagination">
+    <ul class="pagination pagination-lg justify-content-center">
+        {% if spells.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{spells.previous_page_number}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% endif %}
+
+        <li class="page-item"><a class="page-link">{{ spells.number }} z {{ spells.paginator.num_pages }}</a></li>
+
+        {% if spells.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{spells.next_page_number}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}

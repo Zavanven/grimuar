@@ -95,7 +95,6 @@ class Spell(models.Model):
     title = models.CharField(max_length=200)
     spell_school = models.ForeignKey(Spell_school, on_delete=models.SET_NULL, null=True)
     description = RichTextField(blank=True, null=True)
-    #description = models.TextField()
     higher_level = models.TextField(blank=True)
     spell_level = models.CharField(max_length=1, choices=SPELL_LEVEL_CHOICES, default=0)
     casting_time = models.IntegerField(choices=CASTING_TIME_CHOICES, default=ONE_ACTION)

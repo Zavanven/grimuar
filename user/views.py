@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from spell.models import Spell, Components, Spell_school
 from spell.choices import spell_level_choices, casting_time_choices, duration_time_choices
 
@@ -15,8 +16,12 @@ def home(request):
     components = Components.objects.all()
     spell_school = Spell_school.objects.all()
 
+    paginator = Paginator(spells, 10)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+
     context = {
-        'spells' : spells,
+        'spells' : paged_listings,
         'components' : components,
         'spell_schools' : spell_school,
         'spell_level_choices' : spell_level_choices,

@@ -365,6 +365,31 @@ form .row {
     background-color: #f3e8cc;
 }
 
+.page-item.disabled .page-link,
+.page-link {
+    background-color: #f3e8cc;
+    font-family: montserrat-regular;
+}
+
+.page-link {
+    color: #58170D;
+}
+
+.page-link:hover {
+	color: #f3e8cc;
+	background-color: #58170D;
+	border-color: #dee2e6;
+}
+
+.page-item {
+    position: relative;
+}
+
+.page-item:last-child .page-link,
+.page-item:first-child .page-link {
+	border-radius: 0 !important;
+}
+
 @media screen and (max-width: 1400px) {
     .spell-labels__ritual,
     .spell-ritual,
